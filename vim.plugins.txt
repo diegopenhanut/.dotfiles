@@ -1,0 +1,12 @@
+ https://github.com/jalvesaq/Nvim-R.git
+ https://github.com/garbas/vim-snipmate.git
+ https://github.com/airblade/vim-gitgutter.git
+ https://github.com/mattn/emmet-vim.git
+ https://github.com/tpope/vim-surround.git
+ https://github.com/bling/vim-airline.git
+ https://github.com/vim-scripts/perl-support.vim.git
+ https://github.com/scrooloose/nerdtree.git
+ https://github.com/scrooloose/nerdcommenter.git
+ https://github.com/edkolev/tmuxline.vim.git
+ https://github.com/altercation/vim-colors-solarized.git
+ https://github.com/tpope/vim-fugitive.git
