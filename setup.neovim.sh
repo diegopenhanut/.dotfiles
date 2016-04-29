@@ -15,6 +15,7 @@ do
 	git clone $i .vim/bundle/$outdir
 done
 
+mv .vim ~
 # Create symlinks to use neovim
 # This is important because if nvim fails, vim can be used as fall back
 # https://neovim.io/doc/user/nvim_from_vim.html
