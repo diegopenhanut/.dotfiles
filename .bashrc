@@ -1,24 +1,14 @@
-# change vim to nvim 
-alias vim=nvim
+# vim as default text editor
+export EDITOR='vim'
+
+# add today var
 alias today="date '+%Y%m%d'"
 
-#terminal color
+# git repo details on terminal
 source /etc/bash_completion.d/git-prompt
 
-export PS1=$'\[\033[01;32m\][ \w ]\[\033[00m\] $(__git_ps1 " on \[\e[01;32m\]%s\[\e[m\]") \n\xe2\x86\x92 '
-# git fat verbose
-export GIT_FAT_VERBOSE=1
+# export ps1
+export PS1='\[\e[1;31m\]\u\[\e[m\] at \[\e[1;31m\]\h\[\e[m\] in \[\e[1;31m\]\w\[\e[m\]$(declare -F __git_ps1 >&/dev/null && __git_ps1 " on \[\e[1;31m\]%s\[\e[m\]")\n\[\e[1;31m\]$\[\e[m\] '
 
-
-# LinuxBrew
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-
-# export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/:$PKG_CONFIG_PATH
-
-# export PATH=/usr/local/bin:$PATH
-
-# force color
-# force_color_prompt=yes
+# avoid renaming of tmux page
 DISABLE_AUTO_TITLE=true
