@@ -3,7 +3,7 @@ alias vim=nvim
 alias today="date '+%Y%m%d'"
 
 #terminal color
-source /usr/share/git-core/contrib/completion/git-prompt.sh
+source /etc/bash_completion.d/git-prompt
 
 export PS1=$'\[\033[01;32m\][ \w ]\[\033[00m\] $(__git_ps1 " on \[\e[01;32m\]%s\[\e[m\]") \n\xe2\x86\x92 '
 # git fat verbose
