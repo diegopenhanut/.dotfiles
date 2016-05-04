@@ -40,7 +40,8 @@ set showcmd
 set number
 
 " set colorscheme 
-set background=light
+set  t_Co=256
+set background=dark
 colorscheme solarized
 
 " set timeout (less delay when using commands)
