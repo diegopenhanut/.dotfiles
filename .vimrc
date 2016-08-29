@@ -19,12 +19,24 @@ let vimrplugin_assign_map = "__"
 " clipboard
 " set clipboard+=unnamedplus
 
+" Correção Ortógrafica em pt-br
+" usando F5 para ativar e F6 para desativar
+noremap <F5> :set spell spelllang=pt,en<cr>
+noremap <F6> :set spell spelllang=<cr>
+
 " autocompletion on vim commands
 set wildmenu
-:set wildmode=list:longest
+set wildmode=list:longest
 
 " smarttabs
 set smarttab
+set shiftwidth=4
+set softtabstop=4
+
+" disable autoident using F8
+" Usefull for Rmd bullet lists
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
+
 
 " show status line all the time
 set laststatus=2
