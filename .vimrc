@@ -8,10 +8,16 @@ filetype plugin on
 filetype indent on
 set autoindent
 
-let vimrplugin_assign_map = "__"
 
 
 " ###### Nvim tweaks ######
+
+" não adicionar -> quando usar _
+let vimrplugin_assign_map = "__"
+   
+" Change Leader and LocalLeader keys:
+let maplocalleader = ","
+let mapleader = ";"
 
 " spell check
 " :setlocal spell spelllang=en_us
