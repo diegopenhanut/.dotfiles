@@ -52,4 +52,8 @@ rm -rf colorout
 # Install R package
 Rscript -e "install.packages('setwidth')"
 
+# Reconfigure java to load rJAVA package within R
+
+
+sudo R CMD javareconf
 echo "done!"
