@@ -8,13 +8,20 @@ filetype plugin on
 filetype indent on
 set autoindent
 
-let vimrplugin_assign_map = "__"
 
 
 " ###### Nvim tweaks ######
 
-" spell check
-" :setlocal spell spelllang=en_us
+" Add mouse support
+if has('mouse') | set mouse=a | endif
+
+" não adicionar -> quando usar _
+let vimrplugin_assign_map = "__"
+   
+" Change Leader and LocalLeader keys:
+let maplocalleader = ","
+let mapleader = ";"
+
 
 " clipboard
 " set clipboard+=unnamedplus
@@ -29,9 +36,10 @@ set wildmenu
 set wildmode=list:longest
 
 " smarttabs
-set smarttab
+" set smarttab
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 
 " disable autoident using F8
 " Usefull for Rmd bullet lists
