@@ -22,6 +22,8 @@ let vimrplugin_assign_map = "__"
 let maplocalleader = ","
 let mapleader = ";"
 
+" spell check
+" :setlocal spell spelllang=en_us
 
 " clipboard
 " set clipboard+=unnamedplus
@@ -131,17 +133,25 @@ vnoremap <silent> _t :!perltidy -q<Enter>
 " ###### Airline config ######
  
 " unicode symbols
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
 " let g:airline_section_b = '%f'
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
 
 let g:airline_theme='solarized'
 let g:tmuxline_preset = 'nightly_fox'
 
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '|',
-    \ 'right' : '',
-    \ 'right_alt' : '|',
-   \ 'space' : ' '}
+"let g:tmuxline_separators = {
+"    \ 'left' : '',
+"    \ 'left_alt': '|',
+"    \ 'right' : '',
+"    \ 'right_alt' : '|',
+"   \ 'space' : ' '}
 
