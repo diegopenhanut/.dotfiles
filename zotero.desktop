@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Zotero
+GenericName=Bibliography Manager
+Icon=/home/diego/zotero/chrome/icons/default/default48.png
+Exec=/home/diego/zotero/zotero %f
+Categories=Office
+Terminal=0
+#mv this file to .local/share/applications/zotero.desktop 
+
