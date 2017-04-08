@@ -1,0 +1,16 @@
+<!-- Add this below </keybind> on .config/openbox/lxde-rc.xml --> 
+<keybind key="XF86AudioRaiseVolume">
+	<action name="Execute">
+		<command>amixer -q sset Master 5%+</command>
+	</action>
+</keybind>
+<keybind key="XF86AudioLowerVolume">
+	<action name="Execute">
+		<command>amixer -q sset Master 5%-</command>
+	</action>
+</keybind>
+<keybind key="XF86AudioMute">
+	<action name="Execute">
+		<command>amixer -q sset Master toggle</command>
+	</action>
+</keybind>
