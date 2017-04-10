@@ -26,7 +26,7 @@ if [[ ! -f .vim/autoload/pathogen.vim ]]; then
 
 fi
 
-# install plugins
+# download plugins
 for i in $(cat vim.plugins.txt)
 do
 	echo $i
@@ -34,7 +34,12 @@ do
 	git clone $i .vim/bundle/$outdir
 done
 
-rm -rf ~/.vim
+# copy spellcheck data to .vim
+mkdir .vim/spell
+cp pt.utf-8.spl .vim/spell
+
+# copy .vim to final destination, making a backup of old files
+cp -nr ~/.vim ~/.vim_original
 mv .vim ~/
 
 # Create symlinks to use neovim
@@ -44,16 +49,11 @@ mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
 ln -s ~/.vim $XDG_CONFIG_HOME/nvim
 ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
+
+
 # install colorout for R-nvim
-git clone https://github.com/jalvesaq/colorout.git
-R CMD INSTALL colorout
-rm -rf colorout
+# git clone https://github.com/jalvesaq/colorout.git
+# R CMD INSTALL colorout
+# rm -rf colorout
 
-# Install R package
-Rscript -e "install.packages('setwidth')"
-
-# Reconfigure java to load rJAVA package within R
-
-
-sudo R CMD javareconf
 echo "done!"

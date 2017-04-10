@@ -109,8 +109,6 @@ let R_tmux_title = "automatic"
 " start object browser on a nvim split
 let R_tmux_ob = 0
 
-" split vertically
-let R_vsplit = 1
 
 " ###### Nerd Tree ######
 
