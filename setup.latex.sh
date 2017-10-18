@@ -2,7 +2,8 @@
 
 # minimum install
 sudo apt-get install --no-install-recommends texlive-latex-extra
-sudo apt install texlive-fonts-recommended
+sudo apt-get install texlive-fonts-recommended
+sudo apt-get install lmodern
 
 # try those if it did not work
 # sudo apt-get install lmodern
