@@ -71,8 +71,8 @@ set ttimeout
 set ttimeoutlen=100
 
 " remap autocompletion to ctrl space
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <C-Space>
+" inoremap <C-Space> <C-x><C-o>
+" inoremap <C-@> <C-Space>
 
 " use ctrl + regular movement keys to navigate between splits
 nnoremap <C-J> <C-W><C-J>
@@ -107,8 +107,11 @@ let R_assign = 0
 let R_tmux_title = "automatic"
 
 " start object browser on a nvim split
-let R_tmux_ob = 0
+" let R_tmux_ob = 0
 
+" No preview for arguments or functions
+let R_show_args = 0
+let R_show_arg_help = 0
 
 " ###### Nerd Tree ######
 
