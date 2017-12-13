@@ -18,6 +18,15 @@ if [[ ! $(which git) ]]; then
 
 fi
 
+# install wmctrl if not present
+# Required for better SyncTeX support under X Server.
+
+if [[ ! $(which wmctrl) ]]; then
+	
+	sudo apt-get install wmctrl
+
+fi
+
 # install pathogen first
 if [[ ! -f .vim/autoload/pathogen.vim ]]; then
 
@@ -49,11 +58,5 @@ mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
 ln -s ~/.vim $XDG_CONFIG_HOME/nvim
 ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
-
-
-# install colorout for R-nvim
-# git clone https://github.com/jalvesaq/colorout.git
-# R CMD INSTALL colorout
-# rm -rf colorout
 
 echo "done!"
