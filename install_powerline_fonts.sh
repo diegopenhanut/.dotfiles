@@ -2,4 +2,4 @@
 
 git clone https://github.com/powerline/fonts
 cd fonts
-sh install.sh
+sh install.sh 

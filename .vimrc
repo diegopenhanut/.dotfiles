@@ -11,6 +11,11 @@ set autoindent
 
 
 " ###### Nvim tweaks ######
+" fix (hope so) weird characters on :x :c ... 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+
+" output of r terminal should follow nvim colorscheme 
+let rout_follow_colorscheme = 1
 
 " Add mouse support
 if has('mouse') | set mouse=a | endif
