@@ -1,0 +1,98 @@
+```{r chung_tag, echo = FALSE options}
+lala <- function(lele){
+	print(lele)
+}
+
+```
+
+# folding
+
+zc (close)
+zo (open)
+za (toggle)
+
+zR
+
+# nerdCommenter
+;cc
+ toogle comment
+;c<barra>
+
+# emmet
+html
+
+# vim surround
+https://github.com/tpope/vim-surround
+change surrounding
+cs<current><new>
+change surrounding tag to 
+cst<new>
+delete surrounding
+ds"
+
+# nerdtree
+
+o.......Open files, directories and bookmarks....................|NERDTree-o|
+go......Open selected file, but leave cursor in the NERDTree.....|NERDTree-go|
+t.......Open selected node/bookmark in a new tab.................|NERDTree-t|
+T.......Same as 't' but keep the focus on the current tab........|NERDTree-T|
+i.......Open selected file in a split window.....................|NERDTree-i|
+gi......Same as i, but leave the cursor on the NERDTree..........|NERDTree-gi|
+s.......Open selected file in a new vsplit.......................|NERDTree-s|
+gs......Same as s, but leave the cursor on the NERDTree..........|NERDTree-gs|
+O.......Recursively open the selected directory..................|NERDTree-O|
+x.......Close the current nodes parent...........................|NERDTree-x|
+X.......Recursively close all children of the current node.......|NERDTree-X|
+e.......Edit the current dir.....................................|NERDTree-e|
+
+?.......Toggle the display of the quick help.....................|NERDTree-?|
+q.......Close the NERDTree window................................|NERDTree-q|
+
+
+# nerdcommenter
+
+[count]<leader>cc |NERDComComment|
+
+Comment out the current line or text selected in visual mode.
+
+[count]<leader>cn |NERDComNestedComment|
+
+Same as cc but forces nesting.
+
+[count]<leader>c<space> |NERDComToggleComment|
+
+Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
+
+# vim-fugitive
+- git
+
+:Gdiff
+:Gcommit
+:Gstatus
+
+:Gsplit! [args]                 *fugitive-:Gsplit!* *fugitive-:Gvsplit!*
+:Gvsplit! [args]                *fugitive-:Gtabedit!* *fugitive-:Gpedit!*
+
+
+# tabular
+- after visual selection 
+- :'<,'>Tabularize /<-  
+```{r tabular, echo = T}
+my_function <- function(par1){
+	out1          <- par1
+	out_some_text <- par1 + 1
+	cbind(out1, out_some_text)
+}
+
+```
+
+# tlib e vim-addon-mw-utils
+
+dependências para vim-snipmate
+
+# snipmate
+
+autocomplete
+
+
+

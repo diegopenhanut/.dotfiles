@@ -9,7 +9,6 @@ filetype indent on
 set autoindent
 
 
-
 " ###### Nvim tweaks ######
 " fix (hope so) weird characters on :x :c ... 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0

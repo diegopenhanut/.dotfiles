@@ -47,6 +47,10 @@ done
 mkdir .vim/spell
 cp pt.utf-8.spl .vim/spell
 
+# add RMD snippet to snipmate
+mkdir .vim/bundle/snippets_personalizados/snippets/
+cp rmd.snippets .vim/bundle/snippets_personalizados/snippets/
+
 # copy .vim to final destination, making a backup of old files
 cp -nr ~/.vim ~/.vim_original
 mv .vim ~/
