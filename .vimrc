@@ -151,7 +151,7 @@ endif
 
 
 let g:airline_theme='solarized'
-let g:tmuxline_preset = 'nightly_fox'
+" let g:tmuxline_preset = 'nightly_fox'
 
 "let g:tmuxline_separators = {
 "    \ 'left' : '',
@@ -159,4 +159,11 @@ let g:tmuxline_preset = 'nightly_fox'
 "    \ 'right' : '',
 "    \ 'right_alt' : '|',
 "   \ 'space' : ' '}
+
+" Load template for Rmd files
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.Rmd 0r ~/.vim/templates/template.Rmd
+  augroup END
+endif
 
