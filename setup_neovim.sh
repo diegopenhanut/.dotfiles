@@ -27,6 +27,14 @@ if [[ ! $(which wmctrl) ]]; then
 
 fi
 
+# Required to reload the page on the web browser
+
+if [[ ! $(which xdotool) ]]; then
+	
+	sudo apt-get install xdotool
+
+fi
+
 # install pathogen first
 if [[ ! -f .vim/autoload/pathogen.vim ]]; then
 
