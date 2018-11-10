@@ -1,4 +1,4 @@
-#!
+#!/usr/bin/env bash
 
 # Help para keyboard
 # F1-F3 estão funcionando, F4-F11 precisam de 
