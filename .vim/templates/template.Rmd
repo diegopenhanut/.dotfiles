@@ -1,0 +1,259 @@
+---
+title: "Análise"
+author: "Emanuel Diego S Penha"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+    number_sections: yes
+    toc: yes
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+header-includes:
+- \usepackage[brazil]{babel}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+					  fig.width = 10,
+					  echo = FALSE)
+
+options(scipen = 10, digits = 6)
+```
+
+# Sumário Executivo
+
+O script que gera os outros arquivos é `r basename(knitr::current_input())`.
+Pode ser aberto no R, Rstudio ou em qualquer editor de texto. Arquivos com o
+mesmo nome, mas com extensões `*.docx`, `*.html`, `*.pdf` são as versões
+compiladas do scripts. Eles possuem o mesmo conteúdo (tabelas, gráficos,
+análises) em formatos diferentes, para sua conveniência.  Recomendo o uso do
+`*.html` por apresentar melhor formatação e desses serem mais fáceis de copiar
+e colar em outros relatórios. 
+
+- Segue abaixo lista com significado de alguns termos, caso seja necessário
+	- Mean = média
+	- Median = mediana
+	- Sd = desvio padrão
+	- NA ou Missing = dados não encontrados/faltantes
+- Foi utilizado o programa `r version$version.string`.
+
+# Análise
+
+```{r libs e funções comuns}
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(broom)
+library(questionr)
+library(ggcorrplot)
+
+
+desc_factor <- function(a){
+	select_if(a, is.factor) %>% 
+		gather("variável", "categoria") %>% 
+		group_by(variável, categoria) %>% 
+		tally() %>%
+		mutate(`%` = 100*n/sum(n))
+}
+
+desc_numeric <- function(a){
+	var_names <- a %>%
+		select_if(is.numeric) %>%
+		colnames() 
+
+	bind_cols(
+			  tibble("variáveis" = var_names),
+			  a %>% summarize_if(is.numeric, funs(média = mean), na.rm = T) %>%
+				  gather("var", "média") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(dp = sd), na.rm = T) %>%
+				  gather("var", "desvpad") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(mínimo = min), na.rm = T) %>% 
+				  gather("var", "min") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(p25 = quantile), probs = 0.25, na.rm = T) %>%
+				  gather("var", "p25") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(mediana = median), na.rm = T) %>%
+				  gather("var", "mediana") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(p75 = quantile), probs = 0.75, na.rm = T) %>%
+				  gather("var", "p75") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(maximo = max), na.rm = T) %>% 
+				  gather("var", "max") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(val = sum(!is.na(.)))) %>% 
+				  gather("var", "n val") %>%
+				  select(-var),
+			  a %>% summarize_if(is.numeric, funs(freq = n())) %>% 
+				  gather("var", "n") %>%
+				  select(-var)
+			  )
+}
+
+
+# adaptado de http://www.onceupondata.com/2017/08/12/my-first-steps-into-the-world-of-tidyeval/
+
+freq_tbl <- function(df, ..., percent = TRUE, freq){
+	group <- quos(...)
+
+	out <- df %>% 
+		group_by(!!!group) %>% 
+		summarise(freq = n()) %>% 
+		arrange(desc(freq)) %>% 
+		ungroup()
+
+	if (percent == TRUE) {
+		out <- out %>% 
+			mutate(`%` = 100*freq/sum(freq))
+	}
+	return(out)
+}
+
+freq_multi <- function(df, sep, i){
+
+	if(require(questionr)) stop("Necessário questionr")
+
+	string_pattern <- paste0("\\s*", sep, "\\s*")
+	intermediate_res <- gsub(pattern = string_pattern,
+							 replacement = ",",
+							 x = pull(out, i))
+
+	intermediate_res <- gsub(pattern = " E ",
+							 replacement = ",",
+							 x = intermediate_res)
+
+
+	intermediate_res <- multi.split(intermediate_res, split.char = ",") %>%
+		multi.table() 
+
+	rownames(intermediate_res) <- str_split(string = rownames(intermediate_res),
+											pattern = "intermediate_res\\.",
+											simplify = T)[, 2]
+
+	intermediate_res <- intermediate_res %>%            
+		as.tibble() %>%                                     
+		mutate(categorias = rownames(intermediate_res)) %>% 
+		select(categorias, n, `%multi`)     
+
+	intermediate_res
+}
+
+clean_names <- function(a){
+	old_names <- names(a)
+	new_names <- old_names %>%
+		make.names(.) %>%
+		gsub("\\(", "", .) %>%
+		gsub("\\)", "", .) %>%
+		gsub("[.]+", "_", .) %>%
+		tolower(.) %>%
+		gsub("_$", "", .)
+	setNames(a, new_names)
+}
+
+correlation_multi <- function(a, plot = TRUE, title = "", ...){
+	require(ggcorrplot)
+	pvalue <- select_if(a, is.numeric) %>%
+		cor_pmat(...)
+	rvalue <- select_if(a, is.numeric) %>%
+		cor(...)
+
+	if(plot == TRUE){
+		print(
+			  ggcorrplot(rvalue, 
+						 type = "lower",
+						 p.mat = pvalue,
+						 ggtheme = theme_bw,
+						 title = title)
+			  )
+
+	}
+
+	list(p.value = pvalue, r.value = rvalue)
+
+}
+
+multi_chi <- function(df, main_var, other_vars, ...){
+  
+  out <- list()
+  out_table <- list()
+  
+  for (i in other_vars){
+    out_table[[i]] <- df %>% 
+      group_by_(main_var) %>%
+      count_(i) %>%
+      spread_(main_var, "n", fill = 0) %>%
+      rename("categoria" = 1) %>%
+      mutate(variável = i) %>%
+      select(variável, everything())
+    
+    out[[i]] <- chisq.test(pull(df[main_var]), pull(df[i]), ... ) %>%
+      tidy() %>% 
+      mutate(variável = i) %>%
+      mutate(p.value = round(p.value, 3)) %>%
+      select(-variável)
+    
+    out[[i]][2:nrow(out_table[[i]]), ] <- ""
+    
+  }
+  bind_cols(
+    bind_rows(out_table),
+    bind_rows(out))
+}
+
+glm_binomial <- function(formula, data){
+  fit <- glm(formula,	
+             family = binomial(link='logit'), data = data)
+  
+  sum_fit <- summary(fit)
+  
+  #print(sum_fit)
+  
+  #odds <- exp(coef(fit))
+  odds <- exp(cbind(OR = coef(fit), confint(fit))) %>% as.tibble(rownames = "variável")
+  
+  #odds_ratio <- tibble(variável = names(odds),
+  #					 `odds ratio` = round(odds, 3))
+  
+  coeff <- as.tibble(sum_fit$coefficients,
+                     rownames = "variável") 
+  
+  left_join(odds, coeff) 
+}
+```
+
+## Processamento de Dados
+
+```{r read_and_process}
+
+```
+
+
+## Estatística Descritiva
+
+```{r est_desc}
+
+```
+
+## Estatística/Testes/Inferências/Modelos
+
+```{r inf}
+
+```
+
+
+# Referências
+
+R Core Team (2018). R: A language and environment for statistical computing. R
+Foundation for Statistical Computing, Vienna, Austria.  URL
+https://www.R-project.org/.
+
+
+# Informações técnicas sobre a sessão que gerou esse arquivo
+
+
+```{r sessão, echo=FALSE}
+sessionInfo()
+```
+
