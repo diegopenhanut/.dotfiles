@@ -10,13 +10,17 @@ set autoindent
 
 
 " ###### Nvim tweaks ######
+
+" Esc exits terminal mode
+tnoremap <Esc> <C-\><C-n>
+
 " fix (hope so) weird characters on :x :c ... 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 
 " output of r terminal should follow nvim colorscheme 
 let rout_follow_colorscheme = 1
 
-" Add mouse support
+" Add mouse support (vim only)
 if has('mouse') | set mouse=a | endif
 
 " não adicionar -> quando usar _
@@ -50,7 +54,6 @@ set tabstop=4
 " disable autoident using F8
 " Usefull for Rmd bullet lists
 nnoremap <F8> :setl noai nocin nosi inde=<CR>
-
 
 " show status line all the time
 set laststatus=2
@@ -114,8 +117,8 @@ let R_tmux_title = "automatic"
 " let R_tmux_ob = 0
 
 " No preview for arguments or functions
-let R_show_args = 0
-let R_show_arg_help = 0
+" let R_show_args = 0
+" let R_show_arg_help = 0
 
 " ###### Nerd Tree ######
 
@@ -126,22 +129,8 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
-" ###### PERL ######
-
-" my perl includes pod
-let perl_include_pod = 1
-
-" Tidy selected lines (or entire file) with _t:
-nnoremap <silent> _t :%!perltidy -q<Enter>
-vnoremap <silent> _t :!perltidy -q<Enter>
-
 " ###### Airline config ######
  
-" unicode symbols
-" let g:airline_left_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_section_b = '%f'
-
 " air-line
 let g:airline_powerline_fonts = 1
 
@@ -151,14 +140,6 @@ endif
 
 
 let g:airline_theme='solarized'
-" let g:tmuxline_preset = 'nightly_fox'
-
-"let g:tmuxline_separators = {
-"    \ 'left' : '',
-"    \ 'left_alt': '|',
-"    \ 'right' : '',
-"    \ 'right_alt' : '|',
-"   \ 'space' : ' '}
 
 " Load template for Rmd files
 if has("autocmd")

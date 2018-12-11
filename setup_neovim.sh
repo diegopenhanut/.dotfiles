@@ -59,6 +59,9 @@ cp pt.utf-8.spl .vim/spell
 mkdir .vim/bundle/snippets_personalizados/snippets/
 cp rmd.snippets .vim/bundle/snippets_personalizados/snippets/
 
+# add R snippet to snipmate
+cp .vim/bundle/Nvim-R/R/r.snippets .vim/bundle/snippets_personalizados/snippets/
+
 # copy .vim to final destination, making a backup of old files
 cp -nr ~/.vim ~/.vim_original
 mv .vim ~/
