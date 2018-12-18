@@ -16,3 +16,9 @@ https://github.com/MarcWeber/vim-addon-mw-utils.git
 https://github.com/garbas/vim-snipmate.git
 https://github.com/honza/vim-snippets
 https://github.com/vim-pandoc/vim-pandoc-syntax
+https://github.com/gaalcaras/ncm-R.git
+https://github.com/ncm2/ncm2.git
+https://github.com/roxma/nvim-yarp.git
+https://github.com/SirVer/ultisnips.git
+https://github.com/ncm2/ncm2-ultisnips.git
+
