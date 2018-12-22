@@ -1,30 +1,12 @@
 " ###### Basic stuff to enable plugins ######
 
 call plug#begin('~/.vim/plugged')
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
+
+" plugins
+
+" main
 Plug 'jalvesaq/Nvim-R'
-Plug 'gaalcaras/ncm-R'
-
-" Vim 8 only
-if !has('nvim')
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-" Optional: for snippet support
-" Further configuration might be required, read below
-Plug 'sirver/UltiSnips'
-Plug 'ncm2/ncm2-ultisnips'
-
-" Optional: better Rnoweb support (LaTeX completion)
-Plug 'lervag/vimtex'
-
-
-" my plugins
-
 Plug 'airblade/vim-gitgutter'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-surround'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -32,47 +14,28 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'chrisbra/csv.vim'
-Plug 'godlygeek/tabular'
-"Plug 'tomtom/tlib_vim'
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
+
+# pandoc
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-rmarkdown'
 
+" web
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'isRuslan/vim-es6'
+Plug 'alvan/vim-closetag'
+
+" learn latter
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
-" https://github.com/ncm2/ncm2
-
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-"IMPORTANTE: :help Ncm2PopupOpen for more information
-
-set completeopt=noinsert,menuone,noselect
-
-
-" https://github.com/ncm2/ncm2#optional-vimrc-tips
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
-" use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" https://github.com/ncm2/ncm2-ultisnips#vimrc-example
-" Press enter key to trigger snippet expansion
-" The parameters are the same as `:help feedkeys()`
-"inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-
-" c-j c-k for moving in snippet
-" let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
 
 
 " Old stuff
+
 set nocompatible
 set autoindent
 filetype plugin on
@@ -102,6 +65,44 @@ set foldlevel=99
 set cursorline
 
 
+" Auto close tags
+" below options are recommended by:
+" https://github.com/alvan/vim-closetag
+
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
 " ###### Nvim tweaks ######
 
 " Esc exits terminal mode
@@ -123,7 +124,7 @@ set number
 
 " set colorscheme 
 set  t_Co=256
-set background=dark
+set background=light
 colorscheme solarized
 
 " set timeout (less delay when using commands)
