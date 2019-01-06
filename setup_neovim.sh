@@ -5,8 +5,6 @@
 # install nvim if not present
 if [[ ! $(which nvim) ]]; then
 
-	sudo add-apt-repository ppa:neovim-ppa/unstable
-	sudo apt-get update
 	sudo apt-get install neovim
 
 fi
@@ -35,21 +33,17 @@ if [[ ! $(which xdotool) ]]; then
 
 fi
 
-# install pathogen first
-if [[ ! -f .vim/autoload/pathogen.vim ]]; then
+# install vimplug first
+if [[ ! -f .vim/autoload/plug.vim ]]; then
 
-	mkdir -p .vim/autoload .vim/bundle && 
-	wget -O .vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+curl -fLo .vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 fi
 
-# download plugins
-for i in $(cat vim.plugins.txt)
-do
-	echo $i
-	outdir=$(basename $(echo "$i" | cut -d"/" -f 5) .git)
-	git clone $i .vim/bundle/$outdir
-done
+# copy templates
+mkdir .vim/templates/
+cp template* .vim/templates/
 
 # copy spellcheck data to .vim
 mkdir .vim/spell
