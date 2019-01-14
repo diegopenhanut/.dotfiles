@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
 " main
 Plug 'jalvesaq/Nvim-R'
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
@@ -17,7 +17,7 @@ Plug 'chrisbra/csv.vim'
 
 " pandoc
 "Plug 'vim-pandoc/vim-pandoc'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
 "Plug 'vim-pandoc/vim-rmarkdown'
 
 " web
@@ -29,6 +29,7 @@ Plug 'alvan/vim-closetag'
 " learn latter
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
+Plug 'diegopenhanut/md-img-paste.vim'
 
 call plug#end()
 
@@ -42,6 +43,13 @@ filetype plugin on
 filetype indent on
 
 " ###### Testing ######
+
+" https://github.com/ferrine/md-img-paste.vim
+autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+" let g:mdip_imgname = 'image'
+
 
 " Text width (for wrapping) = 80
 set tw=80
@@ -122,7 +130,7 @@ set showcmd
 " display number of line
 set number
 
-" set colorscheme 
+" set colorscheme
 set  t_Co=256
 set background=light
 colorscheme solarized
@@ -149,13 +157,12 @@ set splitbelow
 " starts on separate terminal
 " let R_in_buffer = 0
 
-" output of r terminal should follow nvim colorscheme 
+" output of r terminal should follow nvim colorscheme
 let rout_follow_colorscheme = 1
 
 " Add mouse support (vim only)
 if has('mouse') | set mouse=a | endif
 
-   
 " Change Leader and LocalLeader keys:
 let maplocalleader = ","
 let mapleader = ";"
@@ -212,17 +219,18 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 
 " ###### Airline config ######
- 
-" air-line
+
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
-
+"let g:airline_symbols.branch = '⎇'
 let g:airline_theme='solarized'
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_min_count =2
 
 " ###### Templates ######
 " Load template for Rmd, R, sh files

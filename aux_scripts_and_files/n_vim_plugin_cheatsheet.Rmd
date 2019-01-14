@@ -1,16 +1,8 @@
-```{r chung_tag, echo = FALSE options}
-lala <- function(lele){
-	print(lele)
-}
-
-```
-
 # folding
 
 zc (close)
 zo (open)
 za (toggle)
-
 zR
 
 # nerdCommenter
@@ -44,7 +36,6 @@ O.......Recursively open the selected directory..................|NERDTree-O|
 x.......Close the current nodes parent...........................|NERDTree-x|
 X.......Recursively close all children of the current node.......|NERDTree-X|
 e.......Edit the current dir.....................................|NERDTree-e|
-
 ?.......Toggle the display of the quick help.....................|NERDTree-?|
 q.......Close the NERDTree window................................|NERDTree-q|
 
@@ -69,10 +60,8 @@ Toggles the comment state of the selected line(s). If the topmost selected line 
 :Gdiff
 :Gcommit
 :Gstatus
-
 :Gsplit! [args]                 *fugitive-:Gsplit!* *fugitive-:Gvsplit!*
 :Gvsplit! [args]                *fugitive-:Gtabedit!* *fugitive-:Gpedit!*
-
 
 # tabular
 - after visual selection 
@@ -86,13 +75,6 @@ my_function <- function(par1){
 
 ```
 
-# tlib e vim-addon-mw-utils
-
-dependências para vim-snipmate
-
-# snipmate
-
-autocomplete
 
 
 
