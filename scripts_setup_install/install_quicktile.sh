@@ -5,4 +5,6 @@ git clone https://github.com/ssokolow/quicktile.git
 
 cd quicktile
 
-./install.sh && rm quicktile
+./install.sh && rm -rf quicktile
+
+cp ../configfiles/quicktile.cfg ~/.config/

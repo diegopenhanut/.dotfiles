@@ -1,0 +1,7 @@
+style "mythin"
+{
+xthickness = 0 
+GtkMenuItem::horizontal-padding = 0 
+}
+
+widget "*fast-user-switch*" style "mythin"

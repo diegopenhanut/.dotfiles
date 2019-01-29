@@ -5,7 +5,7 @@
 # change apple keyboard fn status
 # sudo bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 # swap cmd and alt
-sudo bash -c "echo 1 > /sys/module/hid_apple/parameters/swap_opt_cmd"
+# sudo bash -c "echo 1 > /sys/module/hid_apple/parameters/swap_opt_cmd"
 # turn home into esc
 xmodmap -e "keycode 180 = Escape"
 xmodmap -e "keycode 134 = slash question slash question degree questiondown degree questiondown slash question degree questiondown slash question degree questiondown"

@@ -29,6 +29,8 @@ Plug 'alvan/vim-closetag'
 " learn latter
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
+
+" Copy image from clipboard
 Plug 'diegopenhanut/md-img-paste.vim'
 
 call plug#end()
@@ -112,6 +114,9 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 " ###### Nvim tweaks ######
+
+" sudo after root file was opened
+cmap w!! w !sudo tee % >/dev/null
 
 " Esc exits terminal mode
 tnoremap <Esc> <C-\><C-n>
@@ -237,8 +242,10 @@ let g:airline#extensions#tabline#buffer_min_count =2
 if has("autocmd")
   augroup templates
     autocmd BufNewFile *.Rmd 0r ~/.vim/templates/template.Rmd
+    autocmd BufNewFile *.rmd 0r ~/.vim/templates/template.Rmd
     autocmd BufNewFile *.sh 0r ~/.vim/templates/template.sh
     autocmd BufNewFile *.R 0r ~/.vim/templates/template.R
+    autocmd BufNewFile *.r 0r ~/.vim/templates/template.R
   augroup END
 endif
 

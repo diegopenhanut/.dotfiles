@@ -10,7 +10,7 @@ sudo apt-get update
 sudo apt-get install r-base pandoc libcurl4-openssl-dev libxml2-dev gdebi libxml2-dev libssl-dev libcurl4-openssl-dev libopenblas-dev
 
 # install packages
-R --vanilla << EOF
-install.packages(c('tidyverse', 'httr', 'rvest', 'xml2', 'devtools'), repos='http://cran.rstudio.com/')
-q()
-EOF
+#R --vanilla << EOF
+#install.packages(c('tidyverse', 'httr', 'rvest', 'xml2', 'devtools'), repos='http://cran.rstudio.com/')
+#q()
+#EOF

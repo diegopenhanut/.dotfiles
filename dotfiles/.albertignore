@@ -1,0 +1,11 @@
+# Ignore R
+
+/R/*
+
+# Ignore tmp and cache
+tmp
+cache
+
+# General ignores
+node_modules
+bower_components
