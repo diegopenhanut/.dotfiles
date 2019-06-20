@@ -7,4 +7,6 @@ cd quicktile
 
 ./install.sh && rm -rf quicktile
 
+cd -
+
 cp ../configfiles/quicktile.cfg ~/.config/
