@@ -20,6 +20,9 @@ Plug 'chrisbra/csv.vim'
 "Plug 'vim-pandoc/vim-pandoc-syntax'
 "Plug 'vim-pandoc/vim-rmarkdown'
 
+" markdown
+" Plug 'gabrielelana/vim-markdown'
+
 " web
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -29,6 +32,7 @@ Plug 'alvan/vim-closetag'
 " learn latter
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
+Plug 'vim-scripts/loremipsum'
 
 " Copy image from clipboard
 Plug 'diegopenhanut/md-img-paste.vim'
@@ -48,13 +52,15 @@ filetype indent on
 
 " https://github.com/ferrine/md-img-paste.vim
 autocmd FileType markdown nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+autocmd FileType rmd nmap <silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " there are some defaults for image directory and image name, you can change them
 " let g:mdip_imgdir = 'img'
 " let g:mdip_imgname = 'image'
 
 
 " Text width (for wrapping) = 80
-set tw=80
+" set tw=80
+
 " Single space between sentences when wrapping
 set nojoinspaces
 " Persistent undo
@@ -231,6 +237,9 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
+
+
+
 "let g:airline_symbols.branch = '⎇'
 let g:airline_theme='solarized'
 
@@ -249,3 +258,6 @@ if has("autocmd")
   augroup END
 endif
 
+" testing
+set guicursor=
+autocmd TermOpen * setlocal nonumber
